@@ -1,5 +1,7 @@
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import logo from "../../../public/images/GameGoText.png";
+import cartIcon from "../../assets/icons/cartIcon.png";
 
 function Nav() {
   function showNavigation() {
@@ -16,7 +18,12 @@ function Nav() {
             </a>
           </li>
           <li className="mx-1">
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">
+              <img
+                src={cartIcon}
+                style={{ width: "30px", height: "auto" }}
+              ></img>
+            </Link>
           </li>
         </ul>
       );
@@ -38,10 +45,12 @@ function Nav() {
     <header className="flex-row px-1">
       <h1>
         <Link to="/">
-          <span role="img" aria-label="shopping bag">
-            🛍️
-          </span>
-          -Shop-Shop
+          {" "}
+          <img
+            src={logo}
+            alt="GameGo Logo"
+            style={{ width: "100px", height: "auto" }}
+          ></img>
         </Link>
       </h1>
 
