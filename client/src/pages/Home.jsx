@@ -1,5 +1,10 @@
 import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
+import Carousel from "../components/Carousel";
+
+import carouselPhoto1 from "../assets/alphabet-blocks.jpg";
+import carouselPhoto2 from "../assets/cookie-tin.jpg";
+import carouselPhoto3 from "../assets/tablet.jpg";
 
 const Home = () => {
   const carouselPhotos = [carouselPhoto1, carouselPhoto2, carouselPhoto3];
