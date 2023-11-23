@@ -14,8 +14,6 @@ const server = new ApolloServer({
   resolvers,
 });
 
-const test = "Hello World!";
-
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
   await server.start();

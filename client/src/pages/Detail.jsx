@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { createElement, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 
-import Cart from '../components/Cart';
-import { useStoreContext } from '../utils/GlobalState';
+import Cart from "../components/Cart";
+import { useStoreContext } from "../utils/GlobalState";
 import {
   REMOVE_FROM_CART,
   UPDATE_CART_QUANTITY,
   ADD_TO_CART,
   UPDATE_PRODUCTS,
-} from '../utils/actions';
-import { QUERY_PRODUCTS } from '../utils/queries';
-import { idbPromise } from '../utils/helpers';
-import spinner from '../assets/spinner.gif';
+} from "../utils/actions";
+import { QUERY_PRODUCTS } from "../utils/queries";
+import { idbPromise } from "../utils/helpers";
+import spinner from "../assets/spinner.gif";
 
 function Detail() {
   const [state, dispatch] = useStoreContext();
@@ -37,12 +37,12 @@ function Detail() {
       });
 
       data.products.forEach((product) => {
-        idbPromise('products', 'put', product);
+        idbPromise("products", "put", product);
       });
     }
     // get cache from idb
     else if (!loading) {
-      idbPromise('products', 'get').then((indexedProducts) => {
+      idbPromise("products", "get").then((indexedProducts) => {
         dispatch({
           type: UPDATE_PRODUCTS,
           products: indexedProducts,
@@ -59,7 +59,7 @@ function Detail() {
         _id: id,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
-      idbPromise('cart', 'put', {
+      idbPromise("cart", "put", {
         ...itemInCart,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
@@ -68,7 +68,7 @@ function Detail() {
         type: ADD_TO_CART,
         product: { ...currentProduct, purchaseQuantity: 1 },
       });
-      idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
+      idbPromise("cart", "put", { ...currentProduct, purchaseQuantity: 1 });
     }
   };
 
@@ -78,9 +78,24 @@ function Detail() {
       _id: currentProduct._id,
     });
 
-    idbPromise('cart', 'delete', { ...currentProduct });
+    idbPromise("cart", "delete", { ...currentProduct });
   };
+  /*
+  function Form() {
+    const [reviewContent, setReviewContent] = useState("");
 
+    const PostContentChange = (e) => {
+      const { name, value } = e.target;
+      return name === "reviewContent"
+        ? setReviewContent(value)
+        : setReviewContent("");
+    };
+
+    const handleFormSubmit = () => {
+      console.log
+    };
+  }
+*/
   return (
     <>
       {currentProduct && cart ? (
@@ -92,7 +107,7 @@ function Detail() {
           <p>{currentProduct.description}</p>
 
           <p>
-            <strong>Price:</strong>${currentProduct.price}{' '}
+            <strong>Price:</strong>${currentProduct.price}{" "}
             <button onClick={addToCart}>Add to Cart</button>
             <button
               disabled={!cart.find((p) => p._id === currentProduct._id)}
@@ -102,10 +117,22 @@ function Detail() {
             </button>
           </p>
 
-          <img
-            src={`/images/${currentProduct.image}`}
-            alt={currentProduct.name}
-          />
+          <div className="imgreviews">
+            <img
+              src={`/images/${currentProduct.image}`}
+              alt={currentProduct.name}
+              style={{ height: "20px;", width: "300px" }}
+            />
+            <form id="form" action="POST">
+              <textarea
+                name="reviewcontent"
+                id="reviewbox"
+                cols="90"
+                rows="10"
+              ></textarea>
+              <input type="button" value={"Submit"} style={{ width: "10px" }} />
+            </form>
+          </div>
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
