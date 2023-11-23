@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../../../public/images/GameGoText.png";
 import cartIcon from "../../assets/icons/cartIcon.png";
 import login from "../../assets/icons/login.png";
+import logout from "../../assets/icons/logoutIcon.png";
 
 function Nav() {
   function showNavigation() {
@@ -14,16 +15,51 @@ function Nav() {
           </li>
           <li className="mx-1">
             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-            <a href="/" onClick={() => Auth.logout()}>
-              Logout
+            <a
+              href="/"
+              onClick={() => Auth.logout()}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+              }}
+            >
+              <img src={logout} style={{ width: "30px", height: "auto" }}></img>
+              <div
+                style={{
+                  fontSize: "14px",
+                  lineHeight: "1",
+                }}
+              >
+                Logout
+              </div>
             </a>
           </li>
           <li className="mx-1">
-            <Link to="/cart">
+            <Link
+              to="/cart"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+              }}
+            >
               <img
                 src={cartIcon}
                 style={{ width: "30px", height: "auto" }}
               ></img>
+              <div
+                style={{
+                  fontSize: "14px",
+                  lineHeight: "1",
+                }}
+              >
+                Cart
+              </div>
             </Link>
           </li>
         </ul>
@@ -32,12 +68,38 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            <Link to="/signup">Signup</Link>
-          </li>
-          <li className="mx-1">
-            <Link to="/login">
-              <img src={login} style={{ width: "30px", height: "auto" }}></img>
-            </Link>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Link
+                to="/login"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                }}
+              >
+                <img
+                  src={login}
+                  style={{ width: "30px", height: "auto" }}
+                ></img>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    lineHeight: "1",
+                  }}
+                >
+                  Login
+                </div>
+              </Link>
+            </div>
           </li>
         </ul>
       );
@@ -53,12 +115,19 @@ function Nav() {
           justifyContent: "center",
         }}
       >
-        <Link to="/">
+        <Link
+          to="/"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           {" "}
           <img
             src={logo}
             alt="GameGo Logo"
-            style={{ width: "100px", height: "auto" }}
+            style={{ width: "110px", height: "auto" }}
           ></img>
         </Link>
       </h1>

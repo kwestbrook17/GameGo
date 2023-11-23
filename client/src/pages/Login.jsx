@@ -30,16 +30,7 @@ function Login(props) {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "30%",
-        margin: "1rem auto",
-        padding: "20px",
-        background: "white",
-        borderRadius: "4px",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-      }}
-    >
+    <div className="responsive-container">
       <Link
         to="/signup"
         style={{
@@ -95,7 +86,7 @@ function Login(props) {
         >
           <input
             style={{
-              flexGrow: 1,
+              width: "100%",
               padding: "10px",
               border: "1px solid #ccc",
               borderRadius: "4px",
