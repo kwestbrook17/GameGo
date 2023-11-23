@@ -2,6 +2,7 @@ import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import logo from "../../../public/images/GameGoText.png";
 import cartIcon from "../../assets/icons/cartIcon.png";
+import login from "../../assets/icons/login.png";
 
 function Nav() {
   function showNavigation() {
@@ -34,7 +35,9 @@ function Nav() {
             <Link to="/signup">Signup</Link>
           </li>
           <li className="mx-1">
-            <Link to="/login">Login</Link>
+            <Link to="/login">
+              <img src={login} style={{ width: "30px", height: "auto" }}></img>
+            </Link>
           </li>
         </ul>
       );
@@ -43,7 +46,13 @@ function Nav() {
 
   return (
     <header className="flex-row px-1">
-      <h1>
+      <h1
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Link to="/">
           {" "}
           <img
