@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
-import { LOGIN } from '../utils/mutations';
-import Auth from '../utils/auth';
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
+import { LOGIN } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 function Login(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
@@ -17,7 +17,7 @@ function Login(props) {
       const token = mutationResponse.data.login.token;
       Auth.login(token);
     } catch (e) {
-      console.log('error', e);
+      console.log("error", e);
     }
   };
 
@@ -30,40 +30,147 @@ function Login(props) {
   };
 
   return (
-    <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
+    <div
+      style={{
+        maxWidth: "30%",
+        margin: "1rem auto",
+        padding: "20px",
+        background: "white",
+        borderRadius: "4px",
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+      }}
+    >
+      <Link
+        to="/signup"
+        style={{
+          display: "block",
+          textAlign: "center",
+          marginBottom: "1rem",
+          color: "#c51111",
+          textDecoration: "none",
+        }}
+      >
+        ← Go to Signup
+      </Link>
 
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email address:</label>
+      <h2 style={{ textAlign: "center", color: "#333" }}>Welcome to GameGo</h2>
+      <div style={{ textAlign: "center", color: "#333", marginBottom: "1rem" }}>
+        Sign into your GameGo account
+      </div>
+      <form
+        onSubmit={handleFormSubmit}
+        style={{
+          width: "100%",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "1rem",
+          }}
+        >
           <input
-            placeholder="youremail@test.com"
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+            }}
+            placeholder="Email"
             name="email"
             type="email"
             id="email"
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "1rem",
+          }}
+        >
           <input
-            placeholder="******"
+            style={{
+              flexGrow: 1,
+              padding: "10px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+            }}
+            placeholder="Password"
             name="password"
             type="password"
             id="pwd"
             onChange={handleChange}
           />
         </div>
-        {error ? (
+        {error && (
           <div>
-            <p className="error-text">The provided credentials are incorrect</p>
+            <p style={{ color: "red", marginTop: "1rem", textAlign: "center" }}>
+              The provided credentials are incorrect
+            </p>
           </div>
-        ) : null}
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
+        )}
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+          }}
+        >
+          <button
+            type="submit"
+            style={{
+              padding: "10px 20px",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+              backgroundColor: "#c51111",
+              color: "white",
+              width: "100%",
+            }}
+          >
+            Sign In
+          </button>
         </div>
+        <div
+          style={{
+            display: "flex",
+          }}
+        ></div>
       </form>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          textAlign: "center",
+          margin: "10px 0",
+        }}
+      >
+        <div
+          style={{ flexGrow: 1, height: "1px", backgroundColor: "#ccc" }}
+        ></div>
+        <span style={{ padding: "0 10px" }}>or</span>
+        <div
+          style={{ flexGrow: 1, height: "1px", backgroundColor: "#ccc" }}
+        ></div>
+      </div>
+
+      <Link
+        to="/signup"
+        style={{
+          display: "block",
+          textAlign: "center",
+          textDecoration: "none",
+          border: "2px solid #111111",
+          borderRadius: "4px",
+          padding: "5px 10px",
+        }}
+      >
+        Create Account
+      </Link>
     </div>
   );
 }

@@ -46,6 +46,7 @@ h1 {
 
 h2 {
   font-size: 2rem;
+  font-family: "Anton", "Karla", sans-serif;
 }
 
 h3 {
@@ -70,7 +71,7 @@ p {
 }
 
 a {
-  color: var(--tertiary);
+  color: black;
   text-decoration: none;
   font-weight: bold;
 }
@@ -201,6 +202,13 @@ input:focus {
 
 .error-text {
   color: var(--error);
+}
+
+@font-face {
+  font-family: "Anton";
+  src: url("./assets/fonts/Anton-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @media screen and (max-width: 768px) {
