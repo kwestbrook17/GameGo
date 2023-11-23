@@ -38,19 +38,58 @@ const FullPageCart = () => {
   }
 
   return (
-    <div className="full-page-cart">
-      <h2>Shopping Cart</h2>
-      {state.cart.map((item) => (
-        <CartItem key={item._id} item={item} />
-      ))}
-      <div className="total">
-        <strong>Total: ${calculateTotal()}</strong>
+    <div className="full-page-cart container">
+      <div className="cart-container">
+        <div
+          id="cart"
+          style={{
+            flex: "2",
+            marginTop: "2rem",
+            padding: "2rem",
+          }}
+        >
+          <h2
+            style={{
+              padding: "1rem",
+              background: "var(--dark)",
+              color: "white",
+            }}
+          >
+            Shopping Cart
+          </h2>
+          {state.cart.map((item) => (
+            <CartItem key={item._id} item={item} />
+          ))}
+        </div>
+        <div className="order-summary">
+          <h3
+            style={{
+              textAlign: "center",
+              paddingBottom: "1rem",
+            }}
+          >
+            Order Summary
+          </h3>
+          <div className="total">
+            <strong>Estimated Total: ${calculateTotal()}</strong>
+          </div>
+          {Auth.loggedIn() ? (
+            <button
+              onClick={submitCheckout}
+              style={{
+                width: "100%",
+                backgroundColor: "#c51111",
+                borderRadius: "4px",
+                color: "white",
+              }}
+            >
+              Checkout
+            </button>
+          ) : (
+            <span>(Log in to check out)</span>
+          )}
+        </div>
       </div>
-      {Auth.loggedIn() ? (
-        <button onClick={submitCheckout}>Checkout</button>
-      ) : (
-        <span>(Log in to check out)</span>
-      )}
     </div>
   );
 };

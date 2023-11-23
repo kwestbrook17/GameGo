@@ -229,6 +229,21 @@ input:focus {
   gap: 1rem;
 }
 
+.cart-container {
+  display: flex;
+  max-width: 1500px;
+}
+
+.order-summary {
+  flex: 1;
+  margin-top: 4rem;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
 @font-face {
   font-family: "Anton";
   src: url("./assets/fonts/Anton-Regular.ttf") format("truetype");
@@ -246,5 +261,11 @@ input:focus {
   .signup-input {
     flex-direction: column;
     gap: 0rem;
+  }
+  .cart-container {
+    flex-direction: column;
+  }
+  .order-summary {
+    margin: 2rem;
   }
 }
