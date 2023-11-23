@@ -32,30 +32,58 @@ const CartItem = ({ item }) => {
   };
 
   return (
-    <div className="flex-row">
-      <div>
-        <img src={`/images/${item.image}`} alt="" />
+    <div
+      className="flex-row"
+      style={{
+        display: "flex", // Ensure this is a flex container
+        justifyContent: "space-between", // Pushes items to start and end of container
+        background: "white",
+        borderRadius: "4px",
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+        padding: "1rem",
+        marginBottom: "4px",
+      }}
+    >
+      <div style={{ display: "flex" }}>
+        <div
+          style={{
+            paddingRight: "1rem",
+          }}
+        >
+          <img
+            src={`/images/${item.image}`}
+            alt={item.name} // Alt text for accessibility
+            style={{
+              height: "150px",
+              width: "auto",
+            }}
+          />
+        </div>
+        <div>
+          <div>
+            {item.name}, ${item.price}
+          </div>
+          <div>
+            <span>Qty:</span>
+            <select value={item.purchaseQuantity} onChange={onChange}>
+              {[...Array(5).keys()].map((num) => (
+                <option key={num} value={num + 1}>
+                  {num + 1}
+                </option>
+              ))}
+            </select>
+            <span
+              role="img"
+              aria-label="trash"
+              onClick={() => removeFromCart(item)}
+            >
+              🗑️
+            </span>
+          </div>
+        </div>
       </div>
       <div>
-        <div>
-          {item.name}, ${item.price}
-        </div>
-        <div>
-          <span>Qty:</span>
-          <input
-            type="number"
-            placeholder="1"
-            value={item.purchaseQuantity}
-            onChange={onChange}
-          />
-          <span
-            role="img"
-            aria-label="trash"
-            onClick={() => removeFromCart(item)}
-          >
-            🗑️
-          </span>
-        </div>
+        <strong>Total: ${item.price * item.purchaseQuantity}</strong>
       </div>
     </div>
   );
