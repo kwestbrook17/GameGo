@@ -3,6 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import { useStoreContext } from "../utils/GlobalState";
+import { createElement, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+
+import Cart from "../components/Cart";
+import { useStoreContext } from "../utils/GlobalState";
 import {
   REMOVE_FROM_CART,
   UPDATE_CART_QUANTITY,
@@ -79,7 +85,22 @@ function Detail() {
 
     idbPromise("cart", "delete", { ...currentProduct });
   };
+  /*
+  function Form() {
+    const [reviewContent, setReviewContent] = useState("");
 
+    const PostContentChange = (e) => {
+      const { name, value } = e.target;
+      return name === "reviewContent"
+        ? setReviewContent(value)
+        : setReviewContent("");
+    };
+
+    const handleFormSubmit = () => {
+      console.log
+    };
+  }
+*/
   return (
     <>
       {currentProduct && cart ? (
@@ -101,10 +122,22 @@ function Detail() {
             </button>
           </p>
 
-          <img
-            src={`/images/${currentProduct.image}`}
-            alt={currentProduct.name}
-          />
+          <div className="imgreviews">
+            <img
+              src={`/images/${currentProduct.image}`}
+              alt={currentProduct.name}
+              style={{ height: "20px;", width: "300px" }}
+            />
+            <form id="form" action="POST">
+              <textarea
+                name="reviewcontent"
+                id="reviewbox"
+                cols="90"
+                rows="10"
+              ></textarea>
+              <input type="button" value={"Submit"} style={{ width: "10px" }} />
+            </form>
+          </div>
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
