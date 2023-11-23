@@ -1,3 +1,8 @@
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+
+import { useStoreContext } from "../utils/GlobalState";
 import { createElement, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
@@ -136,7 +141,6 @@ function Detail() {
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
-      <Cart />
     </>
   );
 }
