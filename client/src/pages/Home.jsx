@@ -3,9 +3,11 @@ import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
 import Carousel from "../components/Carousel";
 import SearchBar from "../components/SearchBar";
-import carouselPhoto1 from "../assets/alphabet-blocks.jpg";
-import carouselPhoto2 from "../assets/cookie-tin.jpg";
-import carouselPhoto3 from "../assets/tablet.jpg";
+import CustomPrevArrow from '../components/CustomPrevArrow'; 
+import CustomNextArrow from '../components/CustomNextArrow';
+import carouselPhoto1 from "../assets/halo.jpeg";
+import carouselPhoto2 from "../assets/silenthill.jpg";
+import carouselPhoto3 from "../assets/pokemon.png";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,18 +25,22 @@ const Home = () => {
   };
 
   const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true, // Enable autoplay
-    autoplaySpeed: 3000, // Set the autoplay speed in milliseconds (e.g., 3000 ms for 3 seconds)
-  };
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  prevArrow: <CustomPrevArrow />, 
+  nextArrow: <CustomNextArrow />, 
+};
+
 
   return (
     <div className="container">
       <SearchBar onSearch={handleSearch} />
+      <h1>Featured Products</h1>
       <Carousel
         photos={carouselPhotos}
         productLinks={productLinks}
