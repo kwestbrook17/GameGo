@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ProductItem from '../ProductItem';
 import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
@@ -9,6 +9,8 @@ import spinner from '../../assets/spinner.gif';
 
 function ProductList() {
   const [state, dispatch] = useStoreContext();
+
+  const [searchQuery, setSearchQuery] = useState('');
 
   const { currentCategory } = state;
 
@@ -25,23 +27,29 @@ function ProductList() {
       });
     } else if (!loading) {
       idbPromise('products', 'get').then((products) => {
+
+         const filteredProducts = state.products.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
         dispatch({
           type: UPDATE_PRODUCTS,
-          products: products,
+          products: filteredProducts,
         });
       });
     }
-  }, [data, loading, dispatch]);
+  }, [searchQuery, data, loading, dispatch]);
 
   function filterProducts() {
     if (!currentCategory) {
       return state.products;
     }
 
-    return state.products.filter(
-      (product) => product.category._id === currentCategory
-    );
-  }
+   return state.products.filter(
+    (product) =>
+      product.category._id === currentCategory &&
+      product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+}
 
   return (
     <div className="my-2">
