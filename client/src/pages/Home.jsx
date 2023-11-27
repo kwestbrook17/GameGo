@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
 import Carousel from "../components/Carousel";
@@ -7,6 +8,7 @@ import carouselPhoto2 from "../assets/cookie-tin.jpg";
 import carouselPhoto3 from "../assets/tablet.jpg";
 
 const Home = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const carouselPhotos = [carouselPhoto1, carouselPhoto2, carouselPhoto3];
 
   const productLinks = [
@@ -14,6 +16,11 @@ const Home = () => {
     "https://example.com/product2",
     "https://example.com/product3",
   ];
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    // You can add additional logic here if needed
+  };
 
   const settings = {
     dots: true,
@@ -27,7 +34,7 @@ const Home = () => {
 
   return (
     <div className="container">
-      <SearchBar />
+      <SearchBar onSearch={handleSearch} />
       <Carousel
         photos={carouselPhotos}
         productLinks={productLinks}
