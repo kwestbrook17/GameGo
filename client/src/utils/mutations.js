@@ -1,4 +1,15 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
+
+//input ?
+export const ADD_REVIEW = gql`
+  mutation AddReview($review: AddReviewInput) {
+    addReview(review: $review) {
+      _id
+      content
+      user_id
+    }
+  }
+`;
 
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
