@@ -83,7 +83,9 @@ const CartItem = ({ item }) => {
         </div>
       </div>
       <div>
-        <strong>Total: ${item.price * item.purchaseQuantity}</strong>
+        <strong>
+          Total: ${(item.price * item.purchaseQuantity).toFixed(2)}
+        </strong>
       </div>
     </div>
   );
