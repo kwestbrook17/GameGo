@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import ProductItem from '../ProductItem';
-import { useStoreContext } from '../../utils/GlobalState';
-import { UPDATE_PRODUCTS } from '../../utils/actions';
-import { useQuery } from '@apollo/client';
-import { QUERY_PRODUCTS } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
-import spinner from '../../assets/spinner.gif';
+import { useState, useEffect } from "react";
+import ProductItem from "../ProductItem";
+import { useStoreContext } from "../../utils/GlobalState";
+import { UPDATE_PRODUCTS } from "../../utils/actions";
+import { useQuery } from "@apollo/client";
+import { QUERY_PRODUCTS } from "../../utils/queries";
+import { idbPromise } from "../../utils/helpers";
+import spinner from "../../assets/spinner.gif";
 
 function ProductList() {
   const [state, dispatch] = useStoreContext();
 
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { currentCategory } = state;
 
@@ -23,14 +23,13 @@ function ProductList() {
         products: data.products,
       });
       data.products.forEach((product) => {
-        idbPromise('products', 'put', product);
+        idbPromise("products", "put", product);
       });
     } else if (!loading) {
-      idbPromise('products', 'get').then((products) => {
-
-         const filteredProducts = state.products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      idbPromise("products", "get").then((products) => {
+        const filteredProducts = state.products.filter((product) =>
+          product.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
         dispatch({
           type: UPDATE_PRODUCTS,
           products: filteredProducts,
@@ -44,18 +43,18 @@ function ProductList() {
       return state.products;
     }
 
-   return state.products.filter(
-    (product) =>
-      product.category._id === currentCategory &&
-      product.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-}
+    return state.products.filter(
+      (product) =>
+        product.category._id === currentCategory &&
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
 
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
       {state.products.length ? (
-        <div className="flex-row">
+        <div className="flex-row" style={{ marginBottom: "200px" }}>
           {filterProducts().map((product) => (
             <ProductItem
               key={product._id}

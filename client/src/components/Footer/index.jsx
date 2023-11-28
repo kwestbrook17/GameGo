@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import './style.css';
+import React, { useState } from "react";
+import "./style.css";
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleEmailChange = (e) => {
@@ -17,7 +17,6 @@ const Footer = () => {
     if (isValidEmail) {
       setIsSubmitted(true);
     } else {
-     
     }
   };
 
@@ -42,7 +41,7 @@ const Footer = () => {
           </>
         )}
       </div>
- <div className="footer-section">
+      <div className="footer-section">
         <h4>GET HELP</h4>
         <ul>
           <li>Frequently Asked Questions</li>
@@ -73,8 +72,12 @@ const Footer = () => {
       </div>
 
       <div className="copyright-section">
-        <img src="/images/GameGoText.png" alt="Copyright Image" />
-        <p>©2023 Game Go</p>  
+        <img
+          src="/images/GameGoText.png"
+          style={{ width: "200px" }}
+          alt="Copyright Image"
+        />
+        <p>©2023 Game Go</p>
       </div>
     </footer>
   );
