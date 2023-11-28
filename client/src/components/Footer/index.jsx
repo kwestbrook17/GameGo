@@ -42,8 +42,40 @@ const Footer = () => {
           </>
         )}
       </div>
+ <div className="footer-section">
+        <h4>GET HELP</h4>
+        <ul>
+          <li>Frequently Asked Questions</li>
+          <li>Order Status</li>
+          <li>Returns</li>
+        </ul>
+      </div>
 
-      {/* ... Other sections */}
+      <div className="footer-section">
+        <h4>LEGAL & PRIVACY</h4>
+        <ul>
+          <li>CA Privacy Rights</li>
+          <li>CA Transparency Act</li>
+          <li>Conditions of Use</li>
+          <li>Privacy Policy</li>
+        </ul>
+      </div>
+
+      <div className="footer-section">
+        <h4>ABOUT US</h4>
+        <ul>
+          <li>Accessibility</li>
+          <li>Affiliates</li>
+          <li>Careers</li>
+          <li>Find a Store</li>
+          <li>Investors</li>
+        </ul>
+      </div>
+
+      <div className="copyright-section">
+        <img src="/images/GameGoText.png" alt="Copyright Image" />
+        <p>©2023 Game Go</p>  
+      </div>
     </footer>
   );
 };
