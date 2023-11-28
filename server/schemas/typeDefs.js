@@ -4,6 +4,13 @@ const typeDefs = `
     name: String
   }
 
+  type Review{
+    _id:ID!
+    content: String!
+    user_id: ID!
+  }
+
+
   type Product {
     _id: ID
     name: String
@@ -46,6 +53,11 @@ const typeDefs = `
     quantity: Int
   }
 
+  input AddReviewInput{
+    content:String!
+    product_id: ID!
+  }
+
   type Query {
     categories: [Category]
     products(category: ID, name: String): [Product]
@@ -53,6 +65,7 @@ const typeDefs = `
     user: User
     order(_id: ID!): Order
     checkout(products: [ProductInput]): Checkout
+    review:[Review]
   }
 
   type Mutation {
@@ -61,7 +74,9 @@ const typeDefs = `
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
+    addReview(review: AddReviewInput):Review
   }
+  
 `;
 
 module.exports = typeDefs;

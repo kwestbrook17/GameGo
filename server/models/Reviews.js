@@ -8,10 +8,13 @@ const ReviewSchema = new Schema({
     require: true,
     trim: true,
   },
-  _id: {
+  user_id: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+  },
+  product_id: {
+    type: Schema.Types.ObjectId,
+    ref: "Product",
   },
   createdAt: {
     type: Date,
