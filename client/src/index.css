@@ -244,6 +244,10 @@ input:focus {
   margin-bottom: 2rem;
 }
 
+.flex-row img {
+  height: 300px;
+}
+
 @font-face {
   font-family: "Anton";
   src: url("./assets/fonts/Anton-Regular.ttf") format("truetype");

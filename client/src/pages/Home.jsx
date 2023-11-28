@@ -3,11 +3,11 @@ import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
 import Carousel from "../components/Carousel";
 import SearchBar from "../components/SearchBar";
-import CustomPrevArrow from '../components/CustomPrevArrow'; 
-import CustomNextArrow from '../components/CustomNextArrow';
-import carouselPhoto1 from "../assets/halo.jpeg";
-import carouselPhoto2 from "../assets/silenthill.jpg";
-import carouselPhoto3 from "../assets/pokemon.png";
+import CustomPrevArrow from "../components/CustomPrevArrow";
+import CustomNextArrow from "../components/CustomNextArrow";
+import carouselPhoto1 from "../assets/counterStrikeBanner.png";
+import carouselPhoto2 from "../assets/pokemonBanner.jpg";
+import carouselPhoto3 from "../assets/gamegoBanner.png";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,22 +25,23 @@ const Home = () => {
   };
 
   const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 3000,
-  prevArrow: <CustomPrevArrow />, 
-  nextArrow: <CustomNextArrow />, 
-};
-
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
+  };
 
   return (
     <div className="container">
       <SearchBar onSearch={handleSearch} />
-      <h1>Featured Products</h1>
+      <h1 style={{ textAlign: "center", fontWeight: "bolder" }}>
+        Featured Products
+      </h1>
       <Carousel
         photos={carouselPhotos}
         productLinks={productLinks}
