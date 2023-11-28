@@ -5,9 +5,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import './styles.css'; 
 
 const Carousel = ({ photos, productLinks, settings }) => {
+  const { prevArrow, nextArrow, ...otherSettings } = settings;
+
   return (
     <div className="carousel-container">
-      <Slider {...settings}>
+      <Slider {...otherSettings} prevArrow={prevArrow} nextArrow={nextArrow}>
         {photos.map((photo, index) => (
           <div key={index}>
             <a href={productLinks[index]} target="_blank" rel="noopener noreferrer">
