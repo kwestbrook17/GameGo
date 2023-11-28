@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-
-import { useStoreContext } from "../utils/GlobalState";
-import { createElement, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-
-import Cart from "../components/Cart";
+import { useQuery, useMutation } from "@apollo/client";
 import { useStoreContext } from "../utils/GlobalState";
 import {
   REMOVE_FROM_CART,
@@ -15,13 +8,18 @@ import {
   ADD_TO_CART,
   UPDATE_PRODUCTS,
 } from "../utils/actions";
-import { QUERY_PRODUCTS } from "../utils/queries";
+import { ADD_REVIEW } from "../utils/mutations";
+import { QUERY_PRODUCTS, QUERY_REVIEWS } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
 import spinner from "../assets/spinner.gif";
 
 function Detail() {
   const [state, dispatch] = useStoreContext();
   const { id } = useParams();
+  //form-post review
+
+  const [reviewContent, setReviewContent] = useState("");
+  const [addReview, { error }] = useMutation(ADD_REVIEW);
 
   const [currentProduct, setCurrentProduct] = useState({});
 
@@ -85,22 +83,20 @@ function Detail() {
 
     idbPromise("cart", "delete", { ...currentProduct });
   };
-  /*
-  function Form() {
-    const [reviewContent, setReviewContent] = useState("");
-
-    const PostContentChange = (e) => {
-      const { name, value } = e.target;
-      return name === "reviewContent"
-        ? setReviewContent(value)
-        : setReviewContent("");
-    };
-
-    const handleFormSubmit = () => {
-      console.log
-    };
-  }
-*/
+  const formhandler = async (event) => {
+    event.preventDefault();
+    console.log({ content: reviewContent, product_id: id });
+    let review = { content: reviewContent, product_id: id };
+    try {
+      const { data } = await addReview({
+        variables: {
+          review,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <>
       {currentProduct && cart ? (
@@ -128,19 +124,23 @@ function Detail() {
               alt={currentProduct.name}
               style={{ height: "20px;", width: "300px" }}
             />
-            <form id="form" action="POST">
+            <h4>Add a Review</h4>
+            <form id="form" action="POST" onSubmit={formhandler}>
               <textarea
                 name="reviewcontent"
                 id="reviewbox"
                 cols="90"
+                onChange={(e) => setReviewContent(e.target.value)}
                 rows="10"
               ></textarea>
-              <input type="button" value={"Submit"} style={{ width: "10px" }} />
+
+              <button type="submit">Submit</button>
             </form>
           </div>
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
+      <section className="reviews" id="reviews"></section>
     </>
   );
 }
