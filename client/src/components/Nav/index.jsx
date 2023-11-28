@@ -41,7 +41,7 @@ function Nav() {
             >
               <img
                 src={logout}
-                style={{ width: "26px", height: "auto", marginBottom: "4px" }}
+                style={{ width: "27px", height: "auto", marginBottom: "4px" }}
               ></img>
               <div
                 style={{
@@ -163,7 +163,7 @@ function Nav() {
           <img
             src={logo}
             alt="GameGo Logo"
-            style={{ width: "110px", height: "auto" }}
+            style={{ width: "150px", height: "auto" }}
           ></img>
         </Link>
       </h1>

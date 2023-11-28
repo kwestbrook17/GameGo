@@ -1,8 +1,8 @@
 .carousel-container {
-  width: 80%; 
-  margin: 0 auto; 
+  width: 80%;
+  margin: 0 auto;
+  max-height: 400px;
 }
-
 
 .slick-slide {
   display: flex;
@@ -14,7 +14,6 @@
 .slick-slide img {
   width: 100%; /* Make sure images fill the slide container */
   border-radius: 8px; /* Add border-radius for rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for a subtle effect */
 }
 
 .slick-dots {
@@ -39,5 +38,3 @@
 .slick-dots button.slick-active {
   opacity: 1; /* Set the active dot opacity */
 }
-
-
