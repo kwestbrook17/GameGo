@@ -137,6 +137,9 @@ function Detail() {
               <button type="submit">Submit</button>
             </form>
           </div>
+          <section className="reviewsection">
+            <div>{}</div>
+          </section>
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
