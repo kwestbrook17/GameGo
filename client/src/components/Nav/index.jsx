@@ -1,16 +1,29 @@
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import { useStoreContext } from "../../utils/GlobalState";
 import logo from "../../../public/images/GameGoText.png";
 import cartIcon from "../../assets/icons/cartIcon.png";
 import login from "../../assets/icons/login.png";
 import logout from "../../assets/icons/logoutIcon.png";
 
 function Nav() {
+  const [state] = useStoreContext();
+  const { cart } = state;
+
+  // Calculate total items in the cart
+  const totalItems = cart.reduce(
+    (total, item) => total + item.purchaseQuantity,
+    0
+  );
+
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
         <ul className="flex-row">
-          <li className="mx-1">
+          <li
+            className="mx-1"
+            style={{ display: "flex", alignItems: "center" }}
+          >
             <Link to="/orderHistory">Order History</Link>
           </li>
           <li className="mx-1">
@@ -26,7 +39,10 @@ function Nav() {
                 textAlign: "center",
               }}
             >
-              <img src={logout} style={{ width: "30px", height: "auto" }}></img>
+              <img
+                src={logout}
+                style={{ width: "26px", height: "auto", marginBottom: "4px" }}
+              ></img>
               <div
                 style={{
                   fontSize: "14px",
@@ -37,7 +53,7 @@ function Nav() {
               </div>
             </a>
           </li>
-          <li className="mx-1">
+          <li className="mx-1" style={{ position: "relative" }}>
             <Link
               to="/cart"
               style={{
@@ -59,6 +75,26 @@ function Nav() {
                 }}
               >
                 Cart
+                {totalItems > 0 && (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "15px",
+                      height: "15px",
+                      backgroundColor: "red",
+                      color: "white",
+                      borderRadius: "50%",
+                      fontSize: "12px",
+                      position: "absolute",
+                      top: "-5px",
+                      right: "-5px",
+                    }}
+                  >
+                    {totalItems}
+                  </div>
+                )}
               </div>
             </Link>
           </li>

@@ -6,12 +6,26 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_CHECKOUT } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
+import { Link } from "react-router-dom";
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const FullPageCart = () => {
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+
+  React.useEffect(() => {
+    // Save the current background color
+    const originalBackground = document.body.style.backgroundColor;
+
+    // Change the background color when the component mounts
+    document.body.style.backgroundColor = "#f2f4f7"; // replace with your desired color
+
+    // Reset the background color when the component unmounts
+    return () => {
+      document.body.style.backgroundColor = originalBackground;
+    };
+  }, []);
 
   React.useEffect(() => {
     if (data) {
@@ -34,7 +48,33 @@ const FullPageCart = () => {
   };
 
   if (state.cart.length === 0) {
-    return <h3>Your cart is empty!</h3>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "10px",
+        }}
+      >
+        <h3 style={{ fontWeight: "bold", textAlign: "center" }}>
+          Your cart is empty!
+        </h3>
+        <Link
+          to="/"
+          style={{
+            display: "inline-block",
+            textAlign: "center",
+            marginBottom: "1rem",
+            color: "#c51111",
+            textDecoration: "none",
+          }}
+        >
+          ← Go Shop
+        </Link>
+      </div>
+    );
   }
 
   return (
@@ -51,7 +91,7 @@ const FullPageCart = () => {
           <h2
             style={{
               padding: "1rem",
-              background: "var(--dark)",
+              background: "var(--primary)",
               color: "white",
             }}
           >
