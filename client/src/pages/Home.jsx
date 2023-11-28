@@ -8,6 +8,7 @@ import CustomNextArrow from '../components/CustomNextArrow';
 import carouselPhoto1 from "../assets/halo.jpeg";
 import carouselPhoto2 from "../assets/silenthill.jpg";
 import carouselPhoto3 from "../assets/pokemon.png";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -48,6 +49,7 @@ const Home = () => {
       />
       <CategoryMenu />
       <ProductList />
+      <Footer />
     </div>
   );
 };
