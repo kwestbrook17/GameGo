@@ -1,9 +1,6 @@
 import { gql } from '@apollo/client';
 
 
-export const QUERY_REVIEWS = gql`
-  reviews()
-`
 
 
 export const QUERY_PRODUCTS = gql`
