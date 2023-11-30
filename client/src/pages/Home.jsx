@@ -31,7 +31,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ minHeight: "100vh" }}>
       <h1
         style={{
           textAlign: "center",
