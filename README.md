@@ -18,6 +18,8 @@ Welcome to the GameGo Online Store repository. This document provides an overvie
 
 ![Screenshot](./client/src/assets/Screenshot.png)
 
+[Deployed Link](https://limitless-wildwood-39511-8e83c1f3437b.herokuapp.com/)
+
 ## Technologies Used
 
 In the development of GameGo, we've utilized a stack of modern technologies to ensure a responsive, efficient, and secure user experience:
