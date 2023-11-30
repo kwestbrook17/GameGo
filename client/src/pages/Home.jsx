@@ -39,7 +39,13 @@ const Home = () => {
   return (
     <div className="container">
       <SearchBar onSearch={handleSearch} />
-      <h1 style={{ textAlign: "center", fontWeight: "bolder" }}>
+      <h1
+        style={{
+          textAlign: "center",
+          fontWeight: "bold",
+          fontFamily: "Anton",
+        }}
+      >
         Featured Products
       </h1>
       <Carousel
